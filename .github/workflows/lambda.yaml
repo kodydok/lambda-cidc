@@ -1,14 +1,14 @@
-# name of our workflow
-name: Deploy AWS Lambda
-# defines when workflow should be run
-on:
+
+name: Deploy AWS Lambda # name of our workflow
+
+on: # defines when workflow should be run
   push:
     branches:
       - main
     paths:
-      - 'lambda/'
-# defines jobs to run in workflow
-jobs:
+      - 'lambda/**'
+
+jobs: # defines jobs to run in workflow
   deploy-lambda: # name of our job
     runs-on: ubuntu-latest # sets or specifies the runner
     steps:
