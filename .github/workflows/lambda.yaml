@@ -12,26 +12,26 @@ jobs: # defines jobs to run in workflow
   deploy-lambda: # name of our job
     runs-on: ubuntu-latest # sets or specifies the runner
     steps:
-      - uses: actions/checkout@v2
-      # sets up python environment
+      - uses: actions/checkout@v2 # sets up python environment
+      
       - name: Set Up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.12'
-      # installs any packages
-      - name: Install Dependencies
+      
+      - name: Install Dependencies # installs any packages
         runs:
           python -m pip install --upgrade pip
           pip install -r lambda/requirements.txt -t lambda/
-      # sets up our aws credentials
-      - name: Configure AWS Credentials
+      
+      - name: Configure AWS Credentials # sets up our aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY-ID }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: $ {{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
-      # zips lambda directory and updates lambda function
-      - name: Deploy Lambda Function
+      
+      - name: Deploy Lambda Function # zips lambda directory and updates lambda function
         run: |
           cd lambda
           zip -r lambda.zip .
