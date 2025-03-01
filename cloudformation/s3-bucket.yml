@@ -18,6 +18,8 @@ Parameters:
       Tags:
         - Key: Environment
           Value: !Ref Environment
+        - Key: Environment
+          Value: GithubActionsTesting
 
   Output:
     BucketName:
