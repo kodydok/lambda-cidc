@@ -6,7 +6,7 @@ on:
       - 'cloudformation/**'
 
 permissions:
-  pull_requests: write
+  pull-requests: write
   contents: read
 
 jobs:
@@ -29,12 +29,12 @@ jobs:
       - name: Deploy our stack
         run: |
           stack_name="pr-test-stack-${{github.event.pull_request.number}}"
-          aws cloudformation create-stack --stack-name --template-body file://cloudformation/s3-bucket.yml --parameters ParameterKey=Environment,ParameterValue=test
+          aws cloudformation create-stack --stack-name $stack_name --template-body file://cloudformation/s3-bucket.yml --parameters ParameterKey=Environment,ParameterValue=test
       
       - name: Comment on the PR
         uses: actions/github-script@v6
         with:
-          github-token: ${{secrets.GITHUB.TOKEN}}
+          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
