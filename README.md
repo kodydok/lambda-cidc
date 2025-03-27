@@ -1,6 +1,6 @@
 # lambda-cidc
 
-Push event - cicd pipeline for our lambda serverless application
+Push event - cicd pipeline for lambda serverless application
 
 deploy-lambda:
 - sets up python environment
